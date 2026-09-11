@@ -8,6 +8,7 @@ A collection of beginner HTML exercises covering tables, forms, links, images, v
 - `sec.html` — second page used for navigation practice
 - `table.html` — table and form controls
 - `assegment.html` — student registration form and table exercise
+- `test.html` — empty placeholder file reserved for future practice
 - `B.mp4` — local video used by the media example
 
 ## Run locally
