@@ -7,75 +7,73 @@
 </head>
 
 <body>
+    <main>
+        <h1>Student Registration Practice</h1>
 
-    <h1>TABLE</h1>
+        <table border="1">
+            <caption>Student ages</caption>
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>RIDWAN</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>maxmed</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>cabdi</td>
+                    <td>23</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table border="1">
-        <tr>
-            <th>NO</th>
-            <th>NAME</th>
-            <th>AGE</th>
-        </tr>
+        <h2>Registration form</h2>
 
-        <tr>
-            <td>1</td>
-            <td>RIDWAN</td>
-            <td>30</td>
-        </tr>
+        <form>
+            <fieldset>
+                <legend>Student details</legend>
 
-        <tr>
-            <td>2</td>
-            <td>maxmed</td>
-            <td>13</td>
-        </tr>
+                <label for="first-name">First name</label><br>
+                <input id="first-name" name="firstName" type="text" autocomplete="given-name" required>
+                <br><br>
 
-        <tr>
-            <td>3</td>
-            <td>cabdi</td>
-            <td>23</td>
-        </tr>
-    </table>
+                <label for="last-name">Last name</label><br>
+                <input id="last-name" name="lastName" type="text" autocomplete="family-name" required>
+                <br><br>
 
-    <br><br>
+                <label for="email">Email</label><br>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+                <br><br>
 
-    <h1>FORMS</h1>
+                <label for="password">Password</label><br>
+                <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+                <br><br>
 
-   
-    <fieldset>
+                <label for="department">Department</label><br>
+                <select id="department" name="department" required>
+                    <option value="">Choose a department</option>
+                    <option value="software-engineering">Software Engineering</option>
+                    <option value="networking">Networking</option>
+                    <option value="database">Database</option>
+                    <option value="cyber-security">Cyber Security</option>
+                </select>
 
-        <legend>Student Registration Form</legend>
+                <br><br>
 
-        <label>First Name</label><br>
-        <input type="text" placeholder="enter your first name">
-        <br><br>
-
-        <label>Last Name</label><br>
-        <input type="text" placeholder="enter your last name">
-        <br><br>
-
-        <label>Email</label><br>
-        <input type="email" placeholder="enter your email">
-        <br><br>
-
-        <label>Password</label><br>
-        <input type="password" placeholder="enter password">
-        <br><br>
-
-    
-        <label>Select Department</label><br>
-
-        <select>
-            <option>Software Engineering</option>
-            <option>Networking</option>
-            <option>Database</option>
-            <option>Cyber Security</option>
-        </select>
-
-        <br><br>
-
-        <input type="submit" value="Register">
-
-    </fieldset>
-
+                <button type="submit">Register</button>
+            </fieldset>
+        </form>
+    </main>
 </body>
 </html>
