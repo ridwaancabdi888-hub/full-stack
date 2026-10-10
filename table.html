@@ -1,113 +1,117 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>table , form</title>
+    <title>Tables and Registration Form</title>
 </head>
 <body>
-    <h1>TABLE </h1>
+    <main>
+        <h1>Student information</h1>
 
-<TABLe style="padding: auto;"; border="1" align-item="center";  >
+        <section aria-labelledby="student-ages-heading">
+            <h2 id="student-ages-heading">Student ages</h2>
+            <table border="1">
+                <caption>Student names and ages</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>RIDWAN</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>maxmed</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>cabdi</td>
+                        <td>23</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-    <TR>
-<TH>NO</TH>
-<TH>NAME</TH>
-<TH>AGE</TH>
-    </TR>
+        <section aria-labelledby="registration-heading">
+            <h2 id="registration-heading">Registration form</h2>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Personal details</legend>
 
-    <TR>
-<TD>1</TD>
-<TD>RIDWAN</TD>
-<TD>30</TD>
-    </TR>
-    <TR>
-<TD>2</TD>
-<TD>maxmed</TD>
-<TD>13</TD>
-    </TR>
-    <TR>
-<TD>3</TD>
-<TD>cabdi</TD>
-<TD>23</TD>
-    </TR>
+                    <p>
+                        <label for="first-name">First name</label>
+                        <input id="first-name" name="firstName" type="text" autocomplete="given-name" minlength="2" required>
+                    </p>
 
-</TABLe>
+                    <p>
+                        <label for="last-name">Last name</label>
+                        <input id="last-name" name="lastName" type="text" autocomplete="family-name" minlength="2" required>
+                    </p>
 
+                    <p>
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required>
+                    </p>
 
-<h1>FORMS</h1>
+                    <p>
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+                    </p>
+                </fieldset>
 
-<div>
-    <label for="text">FIRST NAME</label> <br>
-    <input type="text" placeholder="enter your first name"> <br>
-    <label for="text">last NAME</label> <br>
-    <input type="text" placeholder="enter your last name"><br>
-    <label for="text">email </label> <br>
-    <input type="email" placeholder="enter your email"><br>
-    <label for="text">password</label> <br>
-    <input type="password" placeholder="enter your the password"><br><BR></BR>
-    <br>
-    
-    <label for=""><H5>choose your hoppies</H5></label>
-    <input type="checkbox">written
-    <input type="checkbox">reading
-    <input type="checkbox">lessening 
-    <br>
-    
-    <label for=""><H5>GENDER</H5></label> 
-    <input type="radio" name="gender">male
-    <input type="radio" name="gender">female
-  <br>
-    &lt;
-    &gt;
-    &copy;
+                <fieldset>
+                    <legend>Hobbies</legend>
+                    <label><input name="hobbies" type="checkbox" value="writing"> Writing</label>
+                    <label><input name="hobbies" type="checkbox" value="reading"> Reading</label>
+                    <label><input name="hobbies" type="checkbox" value="listening"> Listening</label>
+                </fieldset>
 
-</div>
+                <fieldset>
+                    <legend>Gender</legend>
+                    <label><input name="gender" type="radio" value="male" required> Male</label>
+                    <label><input name="gender" type="radio" value="female"> Female</label>
+                </fieldset>
 
-<br>
-<div>
-<table style="border: 1px;">
+                <button type="submit">Register</button>
+            </form>
+        </section>
 
-    <tr>
-        <th>NO</th>
-        <th>NAME</th>
-        <th>GMAIL</th>
-        <th>PHONE</th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>ridwan</td>
-        <td>ridwancabdi888@gmail.com</td>
-        <td>63-4199---</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>cabdi</td>
-        <td>maxmed@gmail.com</td>
-        <td>63-4444---</td>
-    </tr>
-
-
-</table>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <section aria-labelledby="contacts-heading">
+            <h2 id="contacts-heading">Contact directory</h2>
+            <table border="1">
+                <caption>Student contact details</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telephone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>ridwan</td>
+                        <td>ridwancabdi888@gmail.com</td>
+                        <td>63-4199---</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>cabdi</td>
+                        <td>maxmed@gmail.com</td>
+                        <td>63-4444---</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 </body>
 </html>
