@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import { basename, dirname, join } from 'node:path';
+import { dirname, join, normalize } from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
@@ -28,13 +28,37 @@ test('HTML pages include a language, character set, viewport, and title', () => 
   }
 });
 
-test('root-relative local links and media sources point to existing files', () => {
-  for (const file of ['first.html', 'sec.html']) {
+test('local links and media remain portable and point to existing files', () => {
+  for (const file of ['first.html', 'sec.html', 'table.html', 'assegment.html']) {
     const html = readHtml(file);
-    for (const [, path] of html.matchAll(/(?:href|src)=["'](\/[^"'?#]+)["']/gi)) {
-      assert.ok(existsSync(join(root, path.slice(1))), `${file} references missing ${path}`);
+    const references = [...html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)]
+      .map((match) => match[1])
+      .filter((reference) => !/^(?:[a-z]+:|#|\/\/)/i.test(reference));
+
+    for (const reference of references) {
+      assert.ok(
+        !reference.startsWith('/'),
+        `${file} should use a relative path instead of ${reference}`,
+      );
+
+      const path = reference.split(/[?#]/, 1)[0];
+      const resolvedPath = normalize(join(root, dirname(file), path));
+      assert.ok(existsSync(resolvedPath), `${file} references missing ${reference}`);
     }
   }
+});
+
+test('video examples load predictably without forced playback', () => {
+  const html = readHtml('first.html');
+  const video = html.match(/<video\b([^>]*)>[\s\S]*?<\/video>/i)?.[0];
+  const source = video?.match(/<source\b([^>]*)>/i)?.[1];
+
+  assert.ok(video, 'first.html should include a video example');
+  assert.match(video, /\bcontrols\b/i);
+  assert.doesNotMatch(video, /\bautoplay\b/i);
+  assert.equal(attribute(source, 'src'), 'B.mp4');
+  assert.equal(attribute(source, 'type'), 'video/mp4');
+  assert.match(video, /<a\s+href=["']B\.mp4["']>/i, 'video should include a download fallback');
 });
 
 test('form labels target unique controls', () => {
