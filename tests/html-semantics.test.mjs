@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, normalize } from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
@@ -28,6 +28,14 @@ test('HTML pages include a language, character set, viewport, and title', () => 
   }
 });
 
+test('practice pages expose one main landmark and a primary heading', () => {
+  for (const file of ['first.html', 'sec.html', 'table.html', 'assegment.html']) {
+    const html = readHtml(file);
+    assert.equal(tagAttributes(html, 'main').length, 1, `${file} should include one main landmark`);
+    assert.equal(tagAttributes(html, 'h1').length, 1, `${file} should include one h1`);
+  }
+});
+
 test('local links and media remain portable and point to existing files', () => {
   for (const file of ['first.html', 'sec.html', 'table.html', 'assegment.html']) {
     const html = readHtml(file);
@@ -44,8 +52,21 @@ test('local links and media remain portable and point to existing files', () => 
       const path = reference.split(/[?#]/, 1)[0];
       const resolvedPath = normalize(join(root, dirname(file), path));
       assert.ok(existsSync(resolvedPath), `${file} references missing ${reference}`);
+      assert.ok(statSync(resolvedPath).size > 0, `${file} references empty ${reference}`);
     }
   }
+});
+
+test('image examples are portable, sized, and meaningfully described', () => {
+  const html = readHtml('first.html');
+  const image = tagAttributes(html, 'img')[0];
+
+  assert.equal(attribute(image, 'src'), 'web-basics.svg');
+  assert.equal(attribute(image, 'width'), '640');
+  assert.equal(attribute(image, 'height'), '360');
+  assert.ok(attribute(image, 'alt').length >= 20);
+  assert.notEqual(attribute(image, 'alt').toLowerCase(), 'image');
+  assert.doesNotMatch(html, /chatgpt\.com\/c\//i, 'practice pages should not link to private conversations');
 });
 
 test('video examples load predictably without forced playback', () => {

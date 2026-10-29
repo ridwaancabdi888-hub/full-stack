@@ -3,50 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>links images and video list</title>
+    <title>Links, Media, and Lists</title>
 </head>
 <body>
+    <header>
+        <h1>Web basics examples</h1>
+        <nav aria-label="Practice pages">
+            <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website">Learn web development on MDN</a>
+            <a href="sec.html">Visit page two</a>
+        </nav>
+    </header>
 
+    <main>
+        <section aria-labelledby="media-heading">
+            <h2 id="media-heading">Images and video</h2>
+            <img src="web-basics.svg" width="640" height="360"
+                alt="HTML, CSS, and JavaScript shown as connected web development building blocks">
 
-<a href="https://chatgpt.com/c/6a0f1c25-7e08-83ea-8bfc-e8a3d5fcf057" style="padding:10px ;">chatgpt</a>
+            <video width="200" controls preload="metadata" playsinline>
+                <source src="B.mp4" type="video/mp4">
+                Your browser cannot play this video. <a href="B.mp4">Download the MP4 file</a> instead.
+            </video>
+        </section>
 
-<br>
-<a href="sec.html" style="padding: 10px;">visit to page 2</a> <br>
+        <section aria-labelledby="terms-heading">
+            <h2 id="terms-heading">Web technology terms</h2>
+            <dl>
+                <dt>HTML</dt>
+                <dd>HyperText Markup Language</dd>
+                <dt>CSS</dt>
+                <dd>Cascading Style Sheets</dd>
+                <dt>JavaScript</dt>
+                <dd>A programming language used to add behavior to web pages</dd>
+            </dl>
+        </section>
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyg9YEc0z9rPrbyQyOgcpjMANjRnBV77J8Lw&s" alt="image">
-<br>
+        <section aria-labelledby="lists-heading">
+            <h2 id="lists-heading">List examples</h2>
+            <ol style="list-style-type: upper-alpha;">
+                <li>Apple</li>
+                <li>Banana</li>
+                <li>Mango</li>
+            </ol>
 
-<video width="200" controls preload="metadata" playsinline>
-     <source src="B.mp4" type="video/mp4">
-     Your browser cannot play this video. <a href="B.mp4">Download the MP4 file</a> instead.
-</video>
-
-<dl>
-    <dt>html</dt>
-    <dd>HyperText Markup Language</dd>
-</dl>
-<dl>
-    <dt>css</dt>
-    <dd>Cascading Style Sheets</dd>
-</dl>
-<dl>
-    <dt>j.s</dt>
-    <dd>JavaScript</dd>
-</dl>
-
-
-<ol style="list-style-type: upper-alpha;">
-  <li>Apple</li>
-  <li>Banana</li>
-  <li>Mango</li>
-</ol>
-
-<ul style="list-style-type: square;">
-  <li>HTML</li>
-  <li>CSS</li>
-  <li>JavaScript</li>
-</ul>
-
-
+            <ul style="list-style-type: square;">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>
