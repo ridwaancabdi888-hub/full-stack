@@ -36,6 +36,28 @@ test('practice pages expose one main landmark and a primary heading', () => {
   }
 });
 
+test('every practice page provides complete navigation and identifies itself', () => {
+  const pages = ['first.html', 'sec.html', 'table.html', 'assegment.html'];
+
+  for (const file of pages) {
+    const html = readHtml(file);
+    const navigation = html.match(/<nav\b[^>]*\baria-label=["']Practice pages["'][^>]*>([\s\S]*?)<\/nav>/i);
+
+    assert.ok(navigation, `${file} should expose the practice-page navigation`);
+
+    const links = [...navigation[1].matchAll(/<a\b([^>]*)>/gi)].map((match) => match[1]);
+    assert.deepEqual(
+      links.map((attributes) => attribute(attributes, 'href')),
+      ['first.html', 'table.html', 'assegment.html', 'sec.html'],
+      `${file} should link to every practice page in a consistent order`,
+    );
+
+    const currentLinks = links.filter((attributes) => attribute(attributes, 'aria-current') === 'page');
+    assert.equal(currentLinks.length, 1, `${file} should identify exactly one current page`);
+    assert.equal(attribute(currentLinks[0], 'href'), file, `${file} should identify itself as current`);
+  }
+});
+
 test('local links and media remain portable and point to existing files', () => {
   for (const file of ['first.html', 'sec.html', 'table.html', 'assegment.html']) {
     const html = readHtml(file);
